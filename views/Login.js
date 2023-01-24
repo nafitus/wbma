@@ -3,9 +3,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
   TouchableOpacity,
-  View,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {MainContext} from '../contexts/MainContext';
@@ -37,14 +35,9 @@ const Login = ({navigation}) => {
   }, []);
 
   return (
-    <TouchableOpacity
-      onPress={() => Keyboard.dismiss()}
-      style={{flex: 1}}
-      activeOpacity={1}
-    >
+    <TouchableOpacity onPress={() => Keyboard.dismiss()} activeOpacity={1}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.container}
       >
         <LoginForm />
         <RegisterForm />
@@ -52,15 +45,6 @@ const Login = ({navigation}) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 Login.propTypes = {
   navigation: PropTypes.object,

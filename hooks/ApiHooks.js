@@ -75,7 +75,32 @@ const useUser = () => {
       throw new Error('checkUser: ' + error.message);
     }
   };
-  return {getUserByToken};
+  const postUser = async (userData) => {
+    const options = {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    };
+    try {
+      return await doFetch(baseUrl + 'users', options);
+    } catch (error) {
+      throw new Error('postUser: ' + error.message);
+    }
+  };
+  return {getUserByToken, postUser};
 };
 
-export {useMedia, useAuthentication, useUser};
+const useTag = () => {
+  const getFilesByTag = async (tag) => {
+    try {
+      return await doFetch(baseUrl + 'tags/' + tag);
+    } catch (error) {
+      throw new Error('getFilesByTag, ' + error.message);
+    }
+  };
+  return {getFilesByTag};
+};
+
+export {useMedia, useAuthentication, useUser, useTag};
